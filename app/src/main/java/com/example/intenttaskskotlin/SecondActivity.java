@@ -19,7 +19,7 @@ public class SecondActivity extends AppCompatActivity {
 
     private void initViews() {
         TextView getInfo = findViewById(R.id.getInfo);
-        User user = (User) getIntent().getSerializableExtra("user");
+        User user = (User) getIntent().getParcelableExtra("user");
         getInfo.setText(user.getName()+" "+user.getAge());
     }
 }
