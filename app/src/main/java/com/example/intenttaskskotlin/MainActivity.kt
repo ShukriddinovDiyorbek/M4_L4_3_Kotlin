@@ -3,9 +3,11 @@ package com.example.intenttaskskotlin
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.example.intenttaskskotlin.model.User
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,16 +17,18 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initviews() {
-        val info = findViewById<EditText>(R.id.info)
+        val name = findViewById<EditText>(R.id.name)
+        val age = findViewById<EditText>(R.id.age)
+
         val button = findViewById<Button>(R.id.send_btn)
 
         button.setOnClickListener {
-            if (info.text.length == 0) {
+            if (name.text.length == 0 || age.text.length == 0) {
                 Toast.makeText(applicationContext, "To'liq to'ldiring", Toast.LENGTH_LONG).show()
             } else {
                 val intent = Intent(applicationContext, SecondActivity::class.java)
-                val str = info.text.toString()
-                intent.putExtra("info", str)
+                val user = User(name.text.toString(), age.text.toString())
+                intent.putExtra("user", user)
                 startActivity(intent)
             }
         }
